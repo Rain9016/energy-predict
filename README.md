@@ -1,0 +1,1 @@
+Predicting current produced on solar panels using QMiner.

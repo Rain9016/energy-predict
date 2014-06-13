@@ -1,0 +1,106 @@
+[
+  {
+    "name" : "SensorNode",
+    "fields" : [
+          { "name" : "Name", "type" : "string", "primary" : true },
+          { "name" : "Status", "type" : "string", "null" : true},
+          { "name" : "Location", "type" : "float_pair", "null" : true },
+          { "name" : "Cluster", "type" : "string", "null" : true},
+          { "name" : "Description", "type" : "string", "null" : true}
+      ],
+      "joins" : [
+          { "name" : "measured", "type" : "index", "store" : "SensorMeasurement", "inverse" : "measuredBy" }
+      ],
+      "keys" : [
+          { "field" : "Name", "type" : "value" },
+          { "field" : "Status", "type" : "value" },
+          { "field" : "Cluster", "type" : "value" }
+      ]
+  },
+  {
+     "name" : "SensorMeasurement",
+     "fields" : [         
+          { "name" : "DateTime", "type" : "datetime" },
+          { "name" : "bottom_solar_cell_temperature", "type" : "float", "null" : true },                   
+          { "name" : "top_solar_cell_temperature", "type" : "float", "null" : true },                   
+          { "name" : "air_temperature", "type" : "float", "null" : true },                   
+          { "name" : "current_val", "type" : "float", "null" : true }                   
+      ],
+      "joins" : [
+          { "name" : "measuredBy", "type" : "index", "store" : "SensorNode", "inverse" : "measured" }
+      ] 
+  },
+  {
+     "name" : "WeatherMeasurement",
+     "fields" : [         
+          { "name" : "DateTime", "type" : "datetime" },
+          { "name" : "wind_direction", "type" : "float", "null" : true },                   
+          { "name" : "air_temperature", "type" : "float", "null" : true },                   
+          { "name" : "humidity", "type" : "float", "null" : true },                   
+          { "name" : "solar_radiation", "type" : "float", "null" : true },                   
+          { "name" : "wind_speed", "type" : "float", "null" : true },                   
+          { "name" : "rain", "type" : "float", "null" : true }                   
+      ],
+      "keys" : [
+          { "field" : "DateTime", "type" : "value" }
+      ],
+      "joins" : [
+          { "name" : "measuredBy", "type" : "index", "store" : "SensorNode", "inverse" : "measured" }
+      ] 
+  },
+  {
+     "name" : "WeatherMeasurementCalc",
+     "fields" : [         
+          { "name" : "DateTime", "type" : "datetime" },
+          { "name" : "wind_direction", "type" : "float", "null" : true },                   
+          { "name" : "air_temperature", "type" : "float", "null" : true },                   
+          { "name" : "humidity", "type" : "float", "null" : true },                   
+          { "name" : "solar_radiation", "type" : "float", "null" : true },                   
+          { "name" : "wind_speed", "type" : "float", "null" : true },                   
+          { "name" : "rain", "type" : "float", "null" : true }                   
+      ],
+      "keys" : [
+          { "field" : "DateTime", "type" : "value" }
+      ],
+      "joins" : [
+          { "name" : "measuredBy", "type" : "index", "store" : "SensorNode", "inverse" : "measured" }
+      ] 
+  },
+  {
+     "name" : "SensorMeasurementCalc",
+     "fields" : [         
+          { "name" : "DateTime", "type" : "datetime" },
+          { "name" : "current_val_predicted", "type" : "float", "null" : true },
+          { "name" : "current_pred_tempfcast_solarang_autoreg", "type" : "float", "null" : true },
+          { "name" : "current_pred_tempfcast_solarang", "type" : "float", "null" : true },
+          { "name" : "current_val_predicted_with_weather_temp", "type" : "float", "null" : true },
+          { "name" : "current_val_predicted_last_seen", "type" : "float", "null" : true },
+          { "name" : "current_val_predicted_squared", "type" : "float", "null" : true },
+          { "name" : "current_val_predicted_squared2", "type" : "float", "null" : true },
+          { "name" : "current_val", "type" : "float", "null" : true },                                      
+          { "name" : "bottom_solar_cell_temperature", "type" : "float", "null" : true },                   
+          { "name" : "top_solar_cell_temperature", "type" : "float", "null" : true },                   
+          { "name" : "air_temperature", "type" : "float", "null" : true },                   
+          { "name": "diff", "type": "float", "null": true },
+          { "name": "diff_tempfcast_solarang_autoreg", "type": "float", "null": true },
+          { "name": "diff_tempfcast_solarang", "type": "float", "null": true },
+          { "name": "diff_with_weather_temp", "type": "float", "null": true },
+          { "name": "diff_squared", "type": "float", "null": true },
+          { "name": "diff_squared2", "type": "float", "null": true },
+          { "name": "diff_last_seen", "type": "float", "null": true },
+          { "name": "diff_sq", "type": "float", "null": true },
+          { "name": "diff_tempfcast_solarang_autoreg_sq", "type": "float", "null": true },
+          { "name": "diff_tempfcast_solarang_sq", "type": "float", "null": true },
+          { "name": "diff_with_weather_temp_sq", "type": "float", "null": true },
+          { "name": "diff_squared_sq", "type": "float", "null": true },
+          { "name": "diff_squared2_sq", "type": "float", "null": true },
+          { "name": "diff_last_seen_sq", "type": "float", "null": true },
+          { "name": "sunAltNow", "type": "float", "null": true },
+          { "name": "sunAzimNow", "type": "float", "null": true },
+          { "name": "sunAltLater", "type": "float", "null": true },
+          { "name": "sunAzimLater", "type": "float", "null": true },
+          { "name": "EmaShort", "type": "float", "null": true },
+          { "name": "EmaLong", "type": "float", "null": true }
+      ]
+  }
+]
