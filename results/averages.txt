@@ -1,0 +1,9 @@
+average: 1.12, halfhourly 3000+ samples
+settings:
+var NN = analytics.newNN({"layout": [FSSolar.dim + FSWthrARS.dim + (useHistoric ? nAreg * 3 : 0) + (useHistoricToVect ? nAreg * nWindowsIn24h : 0) + (useHistoricOneVect ? nWindowsIn24h : 0), 12, 12, 12, 12, 1], "tFuncHidden":"tanHyper", "tFuncOut":"linear", "learnRate":0.0005, "momentum":0.25});
+everything false, so only weather used
+------------------------------------------------------------
+average: 1.01, hourly
+settings:
+var NN = analytics.newNN({"layout": [FSSolar.dim + FSWthrARS.dim + (useHistoric ? nAreg * 3 : 0) + (useHistoricToVect ? nAreg * nWindowsIn24h : 0) + (useHistoricOneVect ? nWindowsIn24h : 0), 12, 12, 1], "tFuncHidden":"tanHyper", "tFuncOut":"linear", "learnRate":0.0005, "momentum":0.4});
+everything false

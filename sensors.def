@@ -101,6 +101,27 @@
       ] 
   },
   {
+     "name" : "WPredARSHour",
+     "fields" : [         
+          { "name" : "DateTime", "type" : "datetime" },
+          { "name" : "DTString", "type" : "string" },
+          { "name" : "air_temperature", "type" : "float", "null" : true },                   
+          { "name" : "rain", "type" : "float", "null" : true },                   
+          { "name" : "solar_radiation", "type" : "float", "null" : true },                   
+          { "name" : "relative_humidity", "type" : "float", "null" : true },                   
+          { "name" : "wind_speed", "type" : "float", "null" : true },                   
+          { "name" : "wind_direction", "type" : "float", "null" : true },                   
+          { "name" : "cloud_cover", "type" : "float", "null" : true }                  
+      ],
+      "keys" : [
+          { "field" : "DateTime", "type" : "value" },
+          { "field" : "DTString", "type" : "value" }
+      ],
+      "joins" : [
+          { "name" : "measuredBy", "type" : "index", "store" : "SensorNode", "inverse" : "measured" }
+      ] 
+  },
+  {
      "name" : "WMeasAvg",
      "fields" : [         
           { "name" : "DateTime", "type" : "datetime" },
@@ -122,11 +143,14 @@
      "name" : "SMeasAvg",
      "fields" : [         
           { "name" : "DateTime", "type" : "datetime" },
+          { "name" : "static_id", "type" : "int", "null" : true},
+          { "name" : "DateTimeOrig", "type" : "datetime", "null" : true },
           { "name" : "crnt_pred_all", "type" : "float", "null" : true },
           { "name" : "crnt_pred_solar_wpred", "type" : "float", "null" : true },
           { "name" : "crnt_pred_solar_wpred_areg", "type" : "float", "null" : true },
           { "name" : "crnt_pred_solar_fcastio", "type" : "float", "null" : true },
           { "name" : "crnt_pred_solar_fcastio_lintercept", "type" : "float", "null" : true },
+          { "name" : "crnt_nn_solar_fcastio", "type" : "float", "null" : true },
           { "name" : "current_val", "type" : "float", "null" : true },                                      
           { "name" : "bottom_solar_cell_temperature", "type" : "float", "null" : true },                   
           { "name" : "top_solar_cell_temperature", "type" : "float", "null" : true },                   
@@ -136,11 +160,13 @@
           { "name": "diff_solar_wpred_areg", "type": "float", "null": true },
           { "name": "diff_solar_fcastio", "type": "float", "null": true },
           { "name": "diff_solar_fcastio_lintercept", "type": "float", "null": true },
+          { "name": "diff_nn_solar_fcastio", "type": "float", "null": true },
           { "name": "diff_all_sq", "type": "float", "null": true },
           { "name": "diff_solar_wpred_sq", "type": "float", "null": true },
           { "name": "diff_solar_wpred_areg_sq", "type": "float", "null": true },
           { "name": "diff_solar_fcastio_sq", "type": "float", "null": true },
-          { "name": "diff_solar_fcastio_lintercpet_sq", "type": "float", "null": true },
+          { "name": "diff_solar_fcastio_lintercept_sq", "type": "float", "null": true },
+          { "name": "diff_nn_fcastio_sq", "type": "float", "null": true },
           { "name": "sunAltLater", "type": "float", "null": true },
           { "name": "sunAzimLater", "type": "float", "null": true }
       ]

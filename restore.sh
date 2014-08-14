@@ -1,6 +1,6 @@
 CURRENT_PATH=`pwd`
-export QMINER_HOME=$CURRENT_PATH/../../../build/
-export PATH=$PATH:$CURRENT_PATH/../../../build/
+export QMINER_HOME=$CURRENT_PATH/../qminer/build/
+export PATH=$PATH:$CURRENT_PATH/../qminer/build/
 
 rm -f lock
 qm config -conf=sensors.conf
